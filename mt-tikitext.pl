@@ -1,13 +1,13 @@
 # mt-tikitext.pl
 #
-# Copyright 2003 Timothy Appnel.
+# Copyright 2003-4 Timothy Appnel.
 # This code is released under the Artistic License.
 #
 
 package MT::Plugin::TikiText;
 
 use vars qw($VERSION);
-$VERSION = 0.31;
+$VERSION = 0.32;
 
 # updates POD
 # update documentation link
@@ -30,9 +30,9 @@ sub tiki {
 	require Text::Tiki;
 	my $processor=new Text::Tiki;
 	$processor->macros(1); # macros are an experimental.
-	$processor->macro_handler('MTIncludeModulePostprocessing',{ type=>'block_post', code=>\&_macro_mtinclude} );
-	$processor->macro_handler('MTIncludeModuleInline',{ type=>'inline', code=>\&_macro_mtinclude} );
-	$processor->macro_handler('MTIncludeModuleInlineLiteral',{ type=>'inline_literal', code=>\&_macro_mtinclude} );
+	$processor->macro_handler('MTIncludeModulePostprocessing', \&_macro_mtinclude, 'block_post' );
+	$processor->macro_handler('MTIncludeModuleInline',\&_macro_mtinclude, 'inline' );
+	$processor->macro_handler('MTIncludeModuleInlineLiteral',\&_macro_mtinclude, 'inline_literal' );
 	$processor->stash('mt-ctx',$ctx);
 	return $processor->format($text);
 }
@@ -62,7 +62,7 @@ __END__
 =head1 NAME
 
 mt-tikitext.pl - A MovableType plugin that hooks the Text::Tiki module in MovableType with a 
-text formatting plugin and container tag.
+text formatting plugin and container tag. Also includes an example of a macro.
 
 =head1 SYNOPSIS
 

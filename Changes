@@ -1,6 +1,10 @@
 Text::Tiki - TikiText
 CHANGE LOG
 
+0.73 January 6 2004
+* Fixed bug in macro handler routine and mt-tikitext macro. 
+* Documentation fixes.
+
 0.72 December 21 2003
 * Initial Release in CPAN (finally!)
 * Code clean-up

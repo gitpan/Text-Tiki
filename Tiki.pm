@@ -1,5 +1,5 @@
 #
-# Copyright 2003 Timothy Appnel.
+# Copyright 2003-4 Timothy Appnel.
 # This code is released under the Artistic License.
 #
 
@@ -9,7 +9,7 @@ use strict;
 
 use vars qw( $VERSION );
 
-$VERSION = 0.72;
+$VERSION = 0.73;
 
 # Explaination from HTML::FromText docs.
 # This list of protocols is taken from RFC 1630: "Universal Resource
@@ -272,7 +272,7 @@ sub interwiki_link_default_processor {
 sub macros { $_[0]->{__macro_processing}=$_[1]; }
 
 {
-	my %hdlr_types = { 'block' =>1, 'block_post' =>1, 'inline'=>1, 'inline_literal'=>1 }; 
+	my %hdlr_types = ( 'block' =>1, 'block_post' =>1, 'inline'=>1, 'inline_literal'=>1 ); 
 	sub macro_handler { 
 		my ($tiki, $name, $code, $type) = @_;
 		unless ( defined( $hdlr_types{ $type } ) ) {
@@ -567,7 +567,7 @@ Despite the notion of a universal canvas, rich authoring of content through Web 
 
 TikiText is an attempt to work with what we have and minimize (not completely solve) these shortcomings.
 
-I was faced with the task of architecting a way for non-developer non-markup saavy business user who where previously using Microsoft FrontPage to publish writings to the Web. Plain text (with no formatting) was not going to cut it. Nor was teaching them XHTML language. I did an intensive study of different structured text formatting notations that have been developed in the past. These notations included a few different Wiki implements such as UseMod Wiki, MoinMoin Wiki, Text::WikiFormat, in addition to Zope's Structured Text, HTML::FromText and Textile. For one reason or another these notations fell short of my requirements. So in scratching my own itch I developed a notation I call I<TikiText> based on my observations and key learnings. 
+I was faced with the task of architecting a way for non-developer non-markup saavy business user to publish information. Plain text (with no formatting) was not going to cut it. Nor was teaching them XHTML markup. I did an intensive study of different structured text formatting notations that have been developed in the past. These notations included a few different Wiki implements such as UseMod Wiki, MoinMoin Wiki, Text::WikiFormat, in addition to Zope's Structured Text, HTML::FromText and Textile. For one reason or another these notations fell short of my requirements. So in scratching my own itch I developed a notation I call I<TikiText> based on my observations and key learnings. 
 
 The name Tiki came from the combination of Text formatting and wIKI and was chosen to reflect Hawaiian heritige. (For those not familiar with this mythical god of retro poleynesia it's said /I<tee-kee>/ and not /I<tick-E>/)
 
@@ -595,7 +595,7 @@ This code is quite usable and has been improved over the months, but it should s
 
 =head1 TikiText NOTATION
 
-The first thing you must understand about TikiText and, generally speaking, most other text formatting notions is that spaces and linebreaks particularly significant and tabs and puncuation to a certain extent are important to the engine's interpretation. The module attempt to handle whitespace that may be introduced while while cutting and pasting text, but it may not be perfect and unexpected results may occur.
+The first thing you must understand about TikiText and, generally speaking, most other text formatting notions is that spaces and linebreaks particularly significant. To a certain extent, tabs and puncuation are also are important to the engine's interpretation. The module attempt to handle whitespace that may be introduced while while cutting and pasting text, but it may not be perfect and unexpected results may occur.
 
 =head2 Block-Level Formatting
 
@@ -889,7 +889,7 @@ B<Autosizing of images.> While basic image insertion has been added, the auto-in
 
 B<Implement C<E<lt>tableE<gt>> captions and perhaps titles.> 
 
-B<Add C<cite=""> processing to inline quotes and blockquote formatting.> 
+B<Add C<cite=""> processing to inline quotes and blockquote formatting. Smarter use of E<lt>qE<gt>> 
 
 B<Add support for an external acronym dictionary.> Implemented as an automatic function of the TikiText engine it would make a best effort to find and tag acronyms based on a pre-existing external source.
 
@@ -907,19 +907,19 @@ B<Better charater encoding/decoding.>
 
 L<Text::WikiFormat>, L<HTML::FromText>, L<CGI::Kwiki>
 
-http://udell.roninhouse.com/bytecols/2001-06-06.html
+L<http://udell.roninhouse.com/bytecols/2001-06-06.html>
 
-http://www.usemod.com/cgi-bin/wiki.pl?TextFormattingRules
+L<http://www.usemod.com/cgi-bin/wiki.pl?TextFormattingRules>
 
-http://twistedmatrix.com:80/wiki/moin/HelpOnEditing
+L<http://twistedmatrix.com:80/wiki/moin/HelpOnEditing>
 
-http://www.zope.org/Documentation/Articles/STX
+L<http://www.zope.org/Documentation/Articles/STX>
 
-http://www.textism.com/tools/textile/
+L<http://www.textism.com/tools/textile/>
 
-http://daringfireball.net/projects/smartypants/
+L<http://daringfireball.net/projects/smartypants/>
 
-http://en2.wikipedia.org/wiki/Tiki
+L<http://en2.wikipedia.org/wiki/Tiki>
 
 =head1 LICENSE
 
